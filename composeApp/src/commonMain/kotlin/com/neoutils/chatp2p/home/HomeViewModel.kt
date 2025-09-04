@@ -9,6 +9,7 @@ import kotlin.random.Random
 class HomeViewModel(
     private val sendMessage: SendMessage
 ) : ViewModel() {
+
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState = _uiState.asStateFlow()
 
