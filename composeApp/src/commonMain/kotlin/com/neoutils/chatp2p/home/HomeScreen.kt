@@ -5,14 +5,18 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContent
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material3.Card
@@ -59,7 +63,7 @@ fun HomeScreen(
                 .padding(bottom = 16.dp)
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
-                .systemBarsPadding(),
+                .safeContentPadding(),
         )
     }
 ) { padding ->
@@ -94,11 +98,13 @@ fun HomeScreen(
                     Spacer(Modifier.height(4.dp))
 
                     Card {
-                        Text(
-                            text = message.body,
-                            modifier = Modifier
-                                .padding(8.dp)
-                        )
+                        SelectionContainer {
+                            Text(
+                                text = message.body,
+                                modifier = Modifier
+                                    .padding(8.dp)
+                            )
+                        }
                     }
                 }
             }

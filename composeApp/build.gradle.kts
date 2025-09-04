@@ -38,6 +38,13 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+
+            // LibP2P
+            implementation("io.libp2p:jvm-libp2p:1.2.2-RELEASE") {
+                exclude(group = "io.netty", module = "netty-transport-native-epoll")
+                exclude(group = "io.netty", module = "netty-transport-native-kqueue")
+                exclude(group = "io.netty", module = "netty-resolver-dns-native-macos")
+            }
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -62,7 +69,11 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/INDEX.LIST"
+            excludes += "META-INF/DEPENDENCIES"
+            excludes += "META-INF/io.netty.versions.properties"
+            excludes += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
         }
     }
     buildTypes {
